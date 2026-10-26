@@ -2,3 +2,6 @@ streamlit
 numpy
 pyvista
 stpyvista
+trame
+trame-vtk
+trame-vuetify
