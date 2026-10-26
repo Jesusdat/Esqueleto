@@ -1,3 +1,13 @@
+import os
+
+# Conserva otros argumentos que pudieran estar configurados.
+argumentos_trame = os.environ.get("TRAME_ARGS", "")
+
+if "--nosignalhandlers" not in argumentos_trame.split():
+    os.environ["TRAME_ARGS"] = (
+        f"{argumentos_trame} --nosignalhandlers"
+    ).strip()
+
 from pathlib import Path
 
 import numpy as np
