@@ -1,8 +1,8 @@
 streamlit
 numpy
 pyvista
-stpyvista
+trame-pyvista
 trame
 trame-vtk
 trame-vuetify
-wslink
+nest-asyncio2
