@@ -11,7 +11,38 @@ st.set_page_config(
     page_icon="🦖",
     layout="wide",
 )
+import logging
+import sys
+from importlib.metadata import version, PackageNotFoundError
 
+logger = logging.getLogger(__name__)
+
+try:
+    from pyvista.plotting import Plotter
+
+except Exception:
+    logger.exception("ERROR AL IMPORTAR EL VISOR DE PYVISTA")
+
+    logger.error("Python: %s", sys.version)
+    logger.error("Ruta de PyVista: %s", pv.__file__)
+
+    for paquete in (
+        "pyvista",
+        "vtk",
+        "numpy",
+        "matplotlib",
+        "trame-pyvista",
+    ):
+        try:
+            logger.error("%s==%s", paquete, version(paquete))
+        except PackageNotFoundError:
+            logger.error("%s: no instalado", paquete)
+
+    st.error(
+        "No se pudo importar el visor 3D. "
+        "Consulta los registros en Manage app."
+    )
+    st.stop()
 CARPETA_MODELOS = Path(__file__).resolve().parent / "models"
 
 # nombre de archivo, nombre visible, posición manual, dirección de salida
@@ -186,7 +217,7 @@ st.caption(
     f"Despiece: {nivel:.0%}"
 )
 
-plotter = pv.Plotter(
+plotter = Plotter(
     off_screen=True,
     window_size=(1100, 700),
 )
