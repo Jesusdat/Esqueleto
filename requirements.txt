@@ -5,3 +5,4 @@ stpyvista
 trame
 trame-vtk
 trame-vuetify
+wslink
